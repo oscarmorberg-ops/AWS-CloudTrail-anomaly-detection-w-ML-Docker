@@ -1,28 +1,23 @@
-import json
-import boto3
-import numpy as np
-from datetime import datetime
+import json, boto3, numpy as np
+import sys
+sys.path.append('src/ml')
+from advanced_features import extract_pro_features, features_to_vector
 
-slack_client = boto3.client('sns')
+sns = boto3.client('sns')
 
 def lambda_handler(event, context):
-    detail = event['detail']
+    features = extract_pro_features(event['detail'])
+    feature_vector = features_to_vector(features)
     
-    # 10 LIVE features (sub-sekund)
-    features = {
-        'duration_ms': detail.get('responseElements', {}).get('duration', 0),
-        'error_code': 1 if 'errorCode' in detail else 0,
-        'event_name_len': len(detail['eventName']),
-        'user_identity_len': len(detail['userIdentity'].get('type', '')),
-        'request_params_size': len(str(detail.get('requestParameters', {})))
-    }
+    # Proffs Z-score (28 features)
+    z_scores = np.abs(np.array(feature_vector) - 0.5) / 0.2
+    anomaly_score = float(np.max(z_scores))
     
-    # LIVE Z-score anomaly (99.9% threshold)
-    z_scores = [(features[k] - 100) / 30 for k in features]  # Simplified
-    if any(abs(z) > 3.5 for z in z_scores):
-        slack_client.publish(
-            TopicArn='arn:aws:sns:eu-north-1:ACCOUNT:critical-anomalies',
-            Message=f"🚨 LIVE ANOMALY: {detail['eventName']} Z={max(z_scores):.1f}"
+    if anomaly_score > 3.0:
+        sns.publish(
+            TopicArn='arn:aws:sns:eu-north-1:695210052267:critical-anomalies',
+            Subject=f"🚨 PRO Anomaly: {event['detail']['eventName']}",
+            Message=f"Score: {anomaly_score:.2f} | IP: {event['detail']['sourceIPAddress']}"
         )
     
-    return {'statusCode': 200}
+    return {'statusCode': 200, 'body': json.dumps({'anomaly_score': anomaly_score})}
