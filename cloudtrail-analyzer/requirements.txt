@@ -1,5 +1,4 @@
-boto3
 numpy
-requests
-pytest
-pytest-cov
+pandas
+scikit-learn
+boto3

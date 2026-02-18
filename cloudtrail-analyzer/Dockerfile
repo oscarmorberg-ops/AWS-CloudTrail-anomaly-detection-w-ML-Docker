@@ -1,13 +1,10 @@
-# Build stage (HELA ekosystemet)
-FROM python:3.12-slim AS builder
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+FROM public.ecr.aws/lambda/python:3.12
 
-# Production (minimal 50MB image)
-FROM python:3.12-alpine
-WORKDIR /app
-COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
-COPY src/ ./src/
-EXPOSE 8080
-CMD ["python", "-m", "src.cloudtrail_anomaly"]
+COPY requirements.txt ${LAMBDA_TASK_ROOT}
+RUN pip install -r requirements.txt -t ${LAMBDA_TASK_ROOT}
+
+COPY src/realtime/lambda_handler.py ${LAMBDA_TASK_ROOT}/
+COPY src/ml/advanced_features.py ${LAMBDA_TASK_ROOT}/
+
+# FIX: Din funktion heter lambda_handler, inte handler
+CMD ["lambda_handler.lambda_handler"]

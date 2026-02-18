@@ -1,0 +1,44 @@
+{
+    "Configuration": {
+        "FunctionName": "anomaly-realtime",
+        "FunctionArn": "arn:aws:lambda:eu-north-1:695210052267:function:anomaly-realtime",
+        "Runtime": "python3.12",
+        "Role": "arn:aws:iam::695210052267:role/LambdaCloudTrailRole",
+        "Handler": "src.realtime.lambda_handler.lambda_handler",
+        "CodeSize": 963,
+        "Description": "",
+        "Timeout": 3,
+        "MemorySize": 128,
+        "LastModified": "2026-02-18T13:51:17.000+0000",
+        "CodeSha256": "Z+DFATqRAa7AvlM2HQydLR0SHXXhIkdnxSdk/ixczCE=",
+        "Version": "$LATEST",
+        "TracingConfig": {
+            "Mode": "PassThrough"
+        },
+        "RevisionId": "27701e55-9915-4047-b119-a7af0f860fb1",
+        "State": "Active",
+        "LastUpdateStatus": "Successful",
+        "PackageType": "Zip",
+        "Architectures": [
+            "x86_64"
+        ],
+        "EphemeralStorage": {
+            "Size": 512
+        },
+        "SnapStart": {
+            "ApplyOn": "None",
+            "OptimizationStatus": "Off"
+        },
+        "RuntimeVersionConfig": {
+            "RuntimeVersionArn": "arn:aws:lambda:eu-north-1::runtime:db3c84011294fca0fe7b1a23046dff08606163e107373f3875220c35007134cf"
+        },
+        "LoggingConfig": {
+            "LogFormat": "Text",
+            "LogGroup": "/aws/lambda/anomaly-realtime"
+        }
+    },
+    "Code": {
+        "RepositoryType": "S3",
+        "Location": "https://awslambda-eu-n-1-tasks.s3.eu-north-1.amazonaws.com/snapshots/695210052267/anomaly-realtime-5ee62247-b731-40e7-a7ea-6a55c6dfd7e4?versionId=vCOC0ILPhrUVFM7VfqXi3sxWQvSZQr8i&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmV1LW5vcnRoLTEiRzBFAiAya%2FP2%2FDlsa5SExya2IuvQPk10WXsmawMtuxC3%2BfGg%2FwIhALtl1MAKoCQbLriFF4mz7XCPTH4pSBYAgc0frtYlSL8hKosCCGYQBBoMNjcxNDQxOTgwMjAzIgyDjzW5Pf4%2F10A67YYq6AH%2BhWKn92ibKLz0JPkqH3WRwe6qM%2FE6%2BayHjVprSEMRFlgTj0bMIpcYg%2F1uTbY%2Fstvz0BuzD5LyX%2BtmN1YRzTfeTDBK4UzLiuGzz8RdviZjNHfdWSIfmGFDTuzGC1s3DVqi4jroRMDjPeju8nWg1dir8wcQmedryykdJEipwJR67Cq8X2un%2BtfI43bMXh%2F1Pt1YOx9xNcJXG8ebg798mBUnWYc2CBRGNliWQnXH9%2Bimtn5cSfD%2F92cvt5qIwikavjNeJxxYWCwnlb0TXISaD5hRtEIVMCe6aKqZP8uOqGTVLG6ZDictggsyML3v1swGOo0BaN4iHif9CdYnLup62rmxLSUKRi3TunAXeii70XDADPdsGaKUb2byjbZzXDKrvMN9rIqzcjsSKkeT4J6ZEXaXq41D7ilrSBYmHtU5JcK5b0bvN79z5%2F5VbrmUp00xevOGGX1pWG%2FiWQTnpEFFft%2B25I9waO8CmojsdAVqvyQYYiPpr5bzmdpvfjSk2bvX&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260218T135151Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=ASIAZYVIPRMVQ5LPBAA5%2F20260218%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Signature=51cc3490a777a4241946031dd509002fa5f19bd51de5675a475d6772c48a74d2"
+    }
+}
